@@ -28,6 +28,14 @@ namespace ProvaDevSoft
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(
+                options =>
+
+                    options.AddPolicy("CorsPolicy", builder => builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                    ));
             services.AddDbContext<ApiContext>(opt => opt.UseInMemoryDatabase("Prova"));
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -51,6 +59,8 @@ namespace ProvaDevSoft
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors("CorsPolicy");
 
             app.UseEndpoints(endpoints =>
             {

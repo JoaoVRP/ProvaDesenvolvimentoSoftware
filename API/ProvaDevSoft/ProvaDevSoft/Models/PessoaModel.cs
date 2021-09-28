@@ -8,7 +8,7 @@ namespace ProvaDevSoft.Models
     public class PessoaModel
     {
         public int Id { get; set; }
-
+        public string Nome { get; set; }
         public DateTime Nascimento { get; set; }
 
         public string Cpf { get; set; }
